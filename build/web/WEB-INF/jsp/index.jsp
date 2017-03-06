@@ -11,9 +11,12 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--banh rang-->
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 
 
 
@@ -50,6 +53,33 @@ else
 	{
 	$(function(){ $('#err').show(); });
 	}
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btntimve').click(function(e){
+		e.preventDefault();
+		$.ajax({
+			url:'timve.ute',
+			type:'POST',
+			dataType:'html',
+                        beforeSend: function() {
+                            $('#banhrang').show();
+                            
+                        },
+                        complete: function() {
+                            $('#banhrang').hide();
+                        },
+			data:{
+				MaSanBayDi:$('#MaSanBayDi option:selected').val(),
+				MaSanBayDen:$('#MaSanBayDen option:selected').val(),
+				NgayDi:$('#NgayDi').val()
+			}
+		}).done(function(ketqua){
+			$('#noidung').html(ketqua);
+		});
+	});
+});
 </script>
 
 </head>
@@ -91,16 +121,38 @@ else
 			<b>&#x26a0; ${thongbao }</b>
 		</div>
 	</div>
+                
+               
+                <div id="banhrang" hidden><i class="fa fa-gear fa-spin" style="font-size:24px"></i></div>
+                
+                                            
+                           <div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 	<div class="panel panel-default"
-		style="position: absolute;top: 200px;left: 120px; width: 20%;">
+		style="margin-top: 10%; margin-left: 3%; width: 20%;position: fixed">
 		<div class="panel-heading">
 			<center>Tìm vé</center>
 		</div>
 		<div class="panel-body">
 			<form:form action="timve.ute" method="post">
 				<div class="form-group">
-					<label for="email">Sân bay đi:</label> <select name="MaSanBayDi"
+					<label for="email">Sân bay đi:</label> <select name="MaSanBayDi" id="MaSanBayDi"
 						class="form-control">
 						<c:forEach var="f" items="${ListSanBay}">
 							<option value="${f.getMaSanBay()}">${f.getTenSanBay()}</option>
@@ -108,7 +160,7 @@ else
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="email">Sân bay đến:</label> <select name="MaSanBayDen"
+					<label for="email">Sân bay đến:</label> <select name="MaSanBayDen" id="MaSanBayDen"
 						class="form-control">
 						<c:forEach var="f" items="${ListSanBay}">
 							<option value="${f.getMaSanBay()}">${f.getTenSanBay()}</option>
@@ -116,15 +168,18 @@ else
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="email">Ngày đi:</label> <input type="date"
+					<label for="email">Ngày đi:</label> <input type="date" id="NgayDi"
 						class="form-control" name="NgayDi">
 				</div>
 				<center>
-					<button type="submit" class="btn dobong">Tìm vé</button>
+					<button type="submit" class="btn dobong" id="btntimve">Tìm vé</button>
 				</center>
 			</form:form>
 		</div>
 	</div>
+                
+        <div  id="noidung">
+        </div>
 
 
 

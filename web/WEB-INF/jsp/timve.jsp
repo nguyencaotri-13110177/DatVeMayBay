@@ -54,49 +54,8 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 </head>
 <body>
 
-	<header class="trasparent_nav">
-		<div class="wrapper">
-			<div class="logo">
-				<a href="main.ute"><img src="img/logo.png" alt="Fertile"></a>
-			</div>
-
-			<nav>
-				<ul>
-					<li><a href="#">Our Story</a></li>
-					<li><a href="#">Products</a></li>
-					<li><a href="#">Journal</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<!-- End trasparent_nav -->
-
-
-	<div class="stepwizard" style="margin-top: 8%;">
-		<div class="stepwizard-row">
-			<div class="stepwizard-step">
-				<button type="button" class="btn btn-warning btn-circle"
-					onclick="location.href = '${pageContext.request.contextPath}/timve.ute'">1</button>
-				<p style="color: yellow">Tìm vé</p>
-			</div>
-			<div class="stepwizard-step">
-				<button type="button" class="btn btn-default btn-circle"
-					disabled="disabled">2</button>
-				<p style="color: yellow">Đặt vé</p>
-			</div>
-			<div class="stepwizard-step">
-				<button type="button" class="btn btn-default btn-circle"
-					disabled="disabled">3</button>
-				<p style="color: yellow">Thanh toán</p>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="panel panel-default"
-		style="margin-top: 1%; margin-left: 4%; width: 70%; float: left">
+		<div class="panel panel-default"
+		style="margin-top: 10%; margin-right: 3%; width: 70%; float: right">
 		<div class="panel-heading">
 			<center>Thông tin chuyến bay</center>
 		</div>
@@ -171,40 +130,7 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 	</div>
 
 
-<!-- Khung tìm vé ở bên cạnh -->
-	<div class="panel panel-default"
-		style="margin-top: 1%; margin-left: 77%; width: 20%;position: fixed">
-		<div class="panel-heading">
-			<center>Tìm vé</center>
-		</div>
-		<div class="panel-body">
-			<form:form action="timve.ute" method="post">
-				<div class="form-group">
-					<label for="email">Sân bay đi:</label> <select name="MaSanBayDi"
-						class="form-control">
-						<c:forEach var="f" items="${ListSanBay}">
-							<option value="${f.getMaSanBay()}">${f.getTenSanBay()}</option>
-						</c:forEach>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="email">Sân bay đến:</label> <select name="MaSanBayDen"
-						class="form-control">
-						<c:forEach var="f" items="${ListSanBay}">
-							<option value="${f.getMaSanBay()}">${f.getTenSanBay()}</option>
-						</c:forEach>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="email">Ngày đi:</label> <input type="date"
-						class="form-control" name="NgayDi">
-				</div>
-				<center>
-					<button type="submit" class="btn btn-default">Tìm vé</button>
-				</center>
-			</form:form>
-		</div>
-	</div>
+
 
 
 
